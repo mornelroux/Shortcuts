@@ -31,10 +31,13 @@ For general linux compilation
 
 ### U-Boot
 
-    setenv
+Set a new environemnt variable
+
+    setenv var="Hello World"
     saveenv
 
 To reset environment to default settings
+    
     env default -a
     saveenv
 
