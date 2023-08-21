@@ -12,15 +12,25 @@ For general linux compilation
 #### Picocom
 `picocom -b 115200 /dev/ttyACM0`
 
-#### SD Card partitioning
+### SD Card partitioning
 
 Clear the first 128MB
 
-    `sudo dd if=/dev/zero of=/dev/sda bs=1M count=128`
+    sudo dd if=/dev/zero of=/dev/sda bs=1M count=128
 
 Use `parted` program to create partitions on uSD card
     
-    sudo parted /dev/sda`
+    sudo parted /dev/sda
+
+For `embedded-linux-labs` course, the following commands is executed in `parted`:
+    
+    (parted) mklabel gpt
+    (parted) mkpart fsbl1 0% 4095s
+    (parted) mkpart fsbl2 4096s 6143s
+    (parted) mkpart fip 6144s 10239s
+    (parted) mkpart bootfs 10240s 131071s
+    (parted) print
+    (parted) quit
 
 
 #### Trusted Firmware Setup
