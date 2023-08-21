@@ -12,6 +12,14 @@ For general linux compilation
 #### Picocom
 `picocom -b 115200 /dev/ttyACM0`
 
+#### SD Card partitioning
+
+Clear the first 128MB
+
+`sudo dd if=/dev/zero of=/dev/sda bs=1M count=128
+
+sudo parted /dev/sda`
+
 
 #### Trusted Firmware Setup
 
