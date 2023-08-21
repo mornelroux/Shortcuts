@@ -16,11 +16,11 @@ For general linux compilation
 
 Clear the first 128MB
 
-`sudo dd if=/dev/zero of=/dev/sda bs=1M count=128`
+    - `sudo dd if=/dev/zero of=/dev/sda bs=1M count=128`
 
 Use `parted` program to create partitions on uSD card
 
-`sudo parted /dev/sda`
+    - `sudo parted /dev/sda`
 
 
 #### Trusted Firmware Setup
