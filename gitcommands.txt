@@ -28,6 +28,7 @@ git log --all --decorate --oneline --graph                      #Short summary o
 alias graph="git log --all --decorate --oneline --graph"        #Creates a shorthand for the above command
 git branch SDN                                                  #Creates a branch with the name 'SDN'
 git branch                                                      #Shows all the branches
+git branch -a							#Shows all the available branches
 git checkout SDN                                                #Moves the symobolic pointer 'HEAD' to branch 'SDN'
 git commit -a -m "auth for S1"                                  #Stages and commits all changes made in branch
 git checkout master                                             #Moves the HEAD to the master branch
