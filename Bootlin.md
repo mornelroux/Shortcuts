@@ -41,6 +41,10 @@ To reset environment to default settings
     env default -a
     saveenv
 
+Load the file 'testFile.txt' through TFTP to memory 0xc2000000
+
+    tftp 0xc2000000 testFile.txt        #Load file to memory block
+    md 0xc2000000                       #View contents of memory block 0xc2000000
 #### Picocom
 `picocom -b 115200 /dev/ttyACM0`
 
