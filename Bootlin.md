@@ -6,7 +6,7 @@ For general linux compilation
 
 `export CROSS_COMPILE=arm-linux-`
 
-`export ARCH=`
+`export ARCH=arm`
 
 
 #### Picocom
