@@ -13,6 +13,7 @@ For general linux compilation
 ### U-Boot
 
     export CROSS_COMPILE=arm-linux-
+    make DEVICE_TREE=stm32mp157a-dk1
 
 ### TF-A 
     
@@ -26,6 +27,16 @@ For general linux compilation
     export STM32MP_SDMMC=1                        #Specify the fsbl (first piece of software) is on SD card
     export BL=33../u-boot/u-boot-nodtb.bin        #Specify the location of BL33
 
+## Usefull Commands
+
+### U-Boot
+
+    setenv
+    saveenv
+
+To reset environment to default settings
+    env default -a
+    saveenv
 
 #### Picocom
 `picocom -b 115200 /dev/ttyACM0`
