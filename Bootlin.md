@@ -1,4 +1,4 @@
-# Bootlin shortcuts
+# General
 ## Linux Kernel
 
 ### Build Configuration
@@ -8,68 +8,6 @@
     export ARCH=arm
 
 If kernel does not load, check menu configuration. Sometime, the STM32MP family is deselected.
-
-### Embedded System Startup Setup
-
-    1) Create file 'inittab' under the `etc/` directory
-    2) Within 'inittab' provide the following
-
-            #etc/inittab
-
-            ::sysinit:/etc/init.d/rcS
-            ttySTM0::askfirst:/bin/sh
-
-    4) Create directory `etc/init.d/`
-    5) Within `etc/init.d` directory, create file `rcS`
-    6) Add execution permisions with `sudo chmod +x rcS`
-    7) Within `rsC`, add startup script commands
-
-            #!/bin/sh
-            #Mount virtual file systems
-            mount -t proc nodev /proc
-            mount -t sysfs nodev /sys
-
-Common issue: If `ttySTM0::askfirst:/bin/sh` is not present, the kernel will freeze during load at `Run /sbin/init as init process`
-
-### Encourtered Issues
-
-#### Issue 1
-
-When loading the new zImage on the target, process freezes completely (without automactic restart). Final message on terminal:
-
-`Starting kernel ...`
-
-Solution: For some reason during the last `make menuconfig` the System type was deselected.
-
-## Device Tree Configuration
-
-### Adding a customized device tree
-
-1) Create new file under `~/embedded-linux-labs/kernel/linux/arch/arm/boot/dts` with `.dts` extension
-
-   Example for `stm32mp157a-dk1-custom.dts`
-
-       /dts-v1/;
-       #include "stm32mp157a-dk1.dts"
-
-       &i2c5 {
-           status = "okay";
-       };
-2) Modify `Makefile` to include the new device tree under a suitable variable ex. `dtb-$(CONFIG_ARCH_STM32)`
-3) Run `make dtbs` in the `~/embedded-linux-labs/kernel/linux/` directory
-4) Add the new DTB to the TFTP server directory
-5) Modify `bootcmd` in U-boot to load the new DTB
-
-### Adding out-of-tree modules
-
-Remember to run `depmod`
-
-Issue 1: Initialy, `modprobe` did not find the `nunchuk.ko` driver and displayed the error 
-
-    # modprobe nunchuk
-    modprobe: module 'nunchuk' not found
-    
-Solution: After `depmod` was run, the command ran successfully. The `depmod` (Dependency Modules) command is used to generate a list of dependency description of kernel modules and its associated map files. This analyzes the kernel modules in the directory `/lib/modules/kernel-release` and creates a “Makefile”-like dependency file named `modules.dep` based on the symbols present in the set of modules
 
 ## U-Boot
 
@@ -117,14 +55,19 @@ Solution: After `depmod` was run, the command ran successfully. The `depmod` (De
 
 Example inittab sources available at https://elixir.bootlin.com/busybox/latest/source/examples/inittab
     
-## Picocom
+# Embedded Linux Labs
+## Building a Cross-compiling toolchain
+
+
+
+## Bootloader - TF-A and U-Boot
+
+### Picocom
 
 Startup UART communication through host terminal's USB
 
     picocom -b 115200 /dev/ttyACM0
-
-## System Processes 
-
+    
 ### Parted - SD Card partitioning
 
 Clear the first 128MB
@@ -144,12 +87,78 @@ For `embedded-linux-labs` course, the following commands is executed in `parted`
     (parted) mkpart bootfs 10240s 131071s
     (parted) print
     (parted) quit
+## Kernel - Cross-compiling
 
-## I2C Nunchuck Configuration
+### Issue 1
+
+When loading the new zImage on the target, process freezes completely (without automactic restart). Final message on terminal:
+
+`Starting kernel ...`
+
+Solution: For some reason during the last `make menuconfig` the System type was deselected.
+## Tiny embedded system with Busy-Box
+
+### Embedded System Startup Setup
+
+    1) Create file 'inittab' under the `etc/` directory
+    2) Within 'inittab' provide the following
+
+            #etc/inittab
+
+            ::sysinit:/etc/init.d/rcS
+            ttySTM0::askfirst:/bin/sh
+
+    4) Create directory `etc/init.d/`
+    5) Within `etc/init.d` directory, create file `rcS`
+    6) Add execution permisions with `sudo chmod +x rcS`
+    7) Within `rsC`, add startup script commands
+
+            #!/bin/sh
+            #Mount virtual file systems
+            mount -t proc nodev /proc
+            mount -t sysfs nodev /sys
+
+Common issue: If `ttySTM0::askfirst:/bin/sh` is not present, the kernel will freeze during load at `Run /sbin/init as init process`
+## Accessing Hardware Devices
+
+### I2C Nunchuck Configuration
 
     Red        -> VCC -> CN16 Pin 4
     White      -> SCL -> CN13 Pin 10 (D15)
     Yellow     -> SDA -> CN13 Pin 9  (D14)
     Green      -> GND -> CN16 Pin 6 
 
- 
+### Adding a customized device tree
+
+1) Create new file under `~/embedded-linux-labs/kernel/linux/arch/arm/boot/dts` with `.dts` extension
+
+   Example for `stm32mp157a-dk1-custom.dts`
+
+       /dts-v1/;
+       #include "stm32mp157a-dk1.dts"
+
+       &i2c5 {
+           status = "okay";
+       };
+2) Modify `Makefile` to include the new device tree under a suitable variable ex. `dtb-$(CONFIG_ARCH_STM32)`
+3) Run `make dtbs` in the `~/embedded-linux-labs/kernel/linux/` directory
+4) Add the new DTB to the TFTP server directory
+5) Modify `bootcmd` in U-boot to load the new DTB
+### Adding out-of-tree modules
+
+Remember to run `depmod`
+
+Issue 1: Initialy, `modprobe` did not find the `nunchuk.ko` driver and displayed the error 
+
+    # modprobe nunchuk
+    modprobe: module 'nunchuk' not found
+    
+Solution: After `depmod` was run, the command ran successfully. The `depmod` (Dependency Modules) command is used to generate a list of dependency description of kernel modules and its associated map files. This analyzes the kernel modules in the directory `/lib/modules/kernel-release` and creates a “Makefile”-like dependency file named `modules.dep` based on the symbols present in the set of modules
+
+## Filesystem - Block file systems
+
+
+
+## Third party Libraries and Applications
+
+
