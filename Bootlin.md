@@ -45,6 +45,38 @@ Load the file 'testFile.txt' through TFTP to memory 0xc2000000
 
     tftp 0xc2000000 testFile.txt        #Load file to memory block
     md 0xc2000000                       #View contents of memory block 0xc2000000
+
+### Busybox
+
+List of commands
+
+    `ps`                                     #Information about kernel processes
+    'halt`                                    #Umount filesystems safely before shutting down
+    `mount -t proc nodev /proc`            #Mounting the proc filesystem
+    `mount -t sysfs nodev /sys`            #Mounting the sys filesystem
+
+Example inittab sources
+
+    https://elixir.bootlin.com/busybox/latest/source/examples/inittab
+
+System Startuo Configuration
+
+1) Create file 'inittab' under the `etc/` directory
+2) Within 'inittab' provide the following
+       #etc/inittab
+
+       ::sysinit:/etc/init.d/rcS
+       ttySTM0::askfirst:/bin/sh
+3) Create directory `etc/init.d/`
+4) Within `etc/init.d` directory, create file `rcS`
+5) Add execution permisions with `sudo chmod +x rcS`
+6) Within `rsC`, add startup script commands
+       #!/bin/sh
+       #Mount virtual file systems
+       mount -t proc nodev /proc
+       mount -t sysfs nodev /sys
+
+    
 #### Picocom
 `picocom -b 115200 /dev/ttyACM0`
 
