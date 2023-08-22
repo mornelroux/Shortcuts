@@ -136,9 +136,9 @@ For `embedded-linux-labs` course, the following commands is executed in `parted`
 
 ## I2C Nunchuck Configuration
 
-Red        -> VCC -> CN16 Pin 4
-White      -> SCL -> CN13 Pin 10 (D15)
-Yellow     -> SDA -> CN13 Pin 9  (D14)
-Green      -> GND -> CN16 Pin 6 
+    Red        -> VCC -> CN16 Pin 4
+    White      -> SCL -> CN13 Pin 10 (D15)
+    Yellow     -> SDA -> CN13 Pin 9  (D14)
+    Green      -> GND -> CN16 Pin 6 
 
  
