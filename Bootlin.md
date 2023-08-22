@@ -77,12 +77,12 @@ Common issue: If `ttySTM0::askfirst:/bin/sh` is not present, the kernel will fre
 
 ### List of commands
 
-    `ps`                                     #Information about kernel processes
-    'halt`                                    #Umount filesystems safely before shutting down
-    `mount -t proc nodev /proc`            #Mounting the proc filesystem
-    `mount -t sysfs nodev /sys`            #Mounting the sys filesystem
+    ps                                   #Information about kernel processes
+    halt                                 #Umount filesystems safely before shutting down
+    mount -t proc nodev /proc            #Mounting the proc filesystem
+    mount -t sysfs nodev /sys            #Mounting the sys filesystem
 
-Example inittab sources `https://elixir.bootlin.com/busybox/latest/source/examples/inittab`
+Example inittab sources (https://elixir.bootlin.com/busybox/latest/source/examples/inittab)[https://elixir.bootlin.com/busybox/latest/source/examples/inittab]
     
 ## Picocom
 
