@@ -46,7 +46,7 @@ Solution: For some reason during the last `make menuconfig` the System type was 
 ### Adding a customized device tree
 
 1) Create new file under `~/embedded-linux-labs/kernel/linux/arch/arm/boot/dts` with `.dts` extension
-2) Example
+   Example for `stm32mp157a-dk1-custom.dts`
 
        /dts-v1/;
        #include "stm32mp157a-dk1.dts"
@@ -55,8 +55,8 @@ Solution: For some reason during the last `make menuconfig` the System type was 
            status = "okay";
            pinctrl-names;
        };
-3) Modify `Makefile` to include the new device tree under a suitable variable ex. `dtb-$(CONFIG_ARCH_STM32)`
-4) Run `make dtbs`
+2) Modify `Makefile` to include the new device tree under a suitable variable ex. `dtb-$(CONFIG_ARCH_STM32)`
+3) Run `make dtbs`
 
 ## U-Boot
 
