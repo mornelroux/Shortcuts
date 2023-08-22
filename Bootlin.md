@@ -38,8 +38,6 @@ Common issue: If `ttySTM0::askfirst:/bin/sh` is not present, the kernel will fre
 
 ### CLI commands
 
-#### Set a new environemnt variable
-
     setenv var="Hello World"            #Set an environment variable 'var' to "Hello World"
     saveenv                             #Save current environment variables
     env default -a                      #Set environment variables to system default
