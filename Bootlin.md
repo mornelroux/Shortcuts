@@ -54,7 +54,6 @@ Solution: For some reason during the last `make menuconfig` the System type was 
 
        &i2c5 {
            status = "okay";
-           pinctrl-names;
        };
 2) Modify `Makefile` to include the new device tree under a suitable variable ex. `dtb-$(CONFIG_ARCH_STM32)`
 3) Run `make dtbs` in the `~/embedded-linux-labs/kernel/linux/` directory
@@ -134,5 +133,12 @@ For `embedded-linux-labs` course, the following commands is executed in `parted`
     (parted) mkpart bootfs 10240s 131071s
     (parted) print
     (parted) quit
+
+## I2C Nunchuck Configuration
+
+Red        -> VCC -> CN16 Pin 4
+White      -> SCL -> CN13 Pin 10 (D15)
+Yellow     -> SDA -> CN13 Pin 9  (D14)
+Green      -> GND -> CN16 Pin 6 
 
  
