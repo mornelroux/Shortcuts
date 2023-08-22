@@ -46,6 +46,7 @@ Solution: For some reason during the last `make menuconfig` the System type was 
 ### Adding a customized device tree
 
 1) Create new file under `~/embedded-linux-labs/kernel/linux/arch/arm/boot/dts` with `.dts` extension
+
    Example for `stm32mp157a-dk1-custom.dts`
 
        /dts-v1/;
