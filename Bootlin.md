@@ -64,6 +64,13 @@ Solution: For some reason during the last `make menuconfig` the System type was 
 
 Remember to run `depmod`
 
+Issue 1: Initialy, `modprobe` did not find the `nunchuk.ko` driver and displayed the error 
+
+    # modprobe nunchuk
+    modprobe: module 'nunchuk' not found
+    
+Solution: After `depmod` was run, the command ran successfully. The `depmod` (Dependency Modules) command is used to generate a list of dependency description of kernel modules and its associated map files. This analyzes the kernel modules in the directory `/lib/modules/kernel-release` and creates a “Makefile”-like dependency file named `modules.dep` based on the symbols present in the set of modules
+
 ## U-Boot
 
 ### Build Configuration
