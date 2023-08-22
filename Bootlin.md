@@ -7,6 +7,8 @@
     export CROSS_COMPILE=arm-linux-
     export ARCH=arm
 
+If kernel does not load, check menu configuration. Sometime, the STM32MP family is deselected.
+
 ### Embedded System Startup Setup
 
     1) Create file 'inittab' under the `etc/` directory
@@ -28,6 +30,33 @@
             mount -t sysfs nodev /sys
 
 Common issue: If `ttySTM0::askfirst:/bin/sh` is not present, the kernel will freeze during load at `Run /sbin/init as init process`
+
+### Encourtered Issues
+
+#### Issue 1
+
+When loading the new zImage on the target, process freezes completely (without automactic restart). Final message on terminal:
+
+`Starting kernel ...`
+
+Solution: For some reason during the last `make menuconfig` the System type was deselected.
+
+## Device Tree Configuration
+
+### Adding a customized device tree
+
+1) Create new file under `~/embedded-linux-labs/kernel/linux/arch/arm/boot/dts` with `.dts` extension
+2) Example
+
+       /dts-v1/;
+       #include "stm32mp157a-dk1.dts"
+
+       &i2c5 {
+           status = "okay";
+           pinctrl-names;
+       };
+3) Modify `Makefile` to include the new device tree under a suitable variable ex. `dtb-$(CONFIG_ARCH_STM32)`
+4) Run `make dtbs`
 
 ## U-Boot
 
