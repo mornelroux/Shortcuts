@@ -40,17 +40,10 @@ Common issue: If `ttySTM0::askfirst:/bin/sh` is not present, the kernel will fre
 
 #### Set a new environemnt variable
 
-    setenv var="Hello World"
-    saveenv
-
-#### To reset environment to default settings
-
-    env default -a
-    saveenv
-
-#### Load the file 'testFile.txt' through TFTP to memory 0xc2000000
-
-    tftp 0xc2000000 testFile.txt        #Load file to memory block
+    setenv var="Hello World"            #Set an environment variable 'var' to "Hello World"
+    saveenv                             #Save current environment variables
+    env default -a                      #Set environment variables to system default
+    tftp 0xc2000000 testFile.txt        #Load file from TFTP server to memory block
     md 0xc2000000                       #View contents of memory block 0xc2000000
 
 ## TF-A 
@@ -75,7 +68,7 @@ Common issue: If `ttySTM0::askfirst:/bin/sh` is not present, the kernel will fre
     export CROSS_COMPILE=arm-linux-
     export ARCH=arm
 
-### List of commands
+### CLI Commands
 
     ps                                   #Information about kernel processes
     halt                                 #Umount filesystems safely before shutting down
