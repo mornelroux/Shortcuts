@@ -57,8 +57,7 @@ Solution: For some reason during the last `make menuconfig` the System type was 
            pinctrl-names;
        };
 2) Modify `Makefile` to include the new device tree under a suitable variable ex. `dtb-$(CONFIG_ARCH_STM32)`
-3) Run `make dtbs`
-
+3) Run `make dtbs` in the `~/embedded-linux-labs/kernel/linux/` directory
 ## U-Boot
 
 ### Build Configuration
