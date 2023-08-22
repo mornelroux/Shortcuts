@@ -59,22 +59,27 @@ Example inittab sources
 
     https://elixir.bootlin.com/busybox/latest/source/examples/inittab
 
-System Startuo Configuration
+# System Startup Configuration
 
 1) Create file 'inittab' under the `etc/` directory
 2) Within 'inittab' provide the following
+   
        #etc/inittab
 
        ::sysinit:/etc/init.d/rcS
        ttySTM0::askfirst:/bin/sh
-3) Create directory `etc/init.d/`
-4) Within `etc/init.d` directory, create file `rcS`
-5) Add execution permisions with `sudo chmod +x rcS`
-6) Within `rsC`, add startup script commands
+   
+4) Create directory `etc/init.d/`
+5) Within `etc/init.d` directory, create file `rcS`
+6) Add execution permisions with `sudo chmod +x rcS`
+7) Within `rsC`, add startup script commands
+   
        #!/bin/sh
        #Mount virtual file systems
        mount -t proc nodev /proc
        mount -t sysfs nodev /sys
+
+Common issue: If `ttySTM0::askfirst:/bin/sh` is not present, the kernel will freeze during load at `Run /sbin/init as init process`
 
     
 #### Picocom
