@@ -59,7 +59,11 @@ Solution: For some reason during the last `make menuconfig` the System type was 
 3) Run `make dtbs` in the `~/embedded-linux-labs/kernel/linux/` directory
 4) Add the new DTB to the TFTP server directory
 5) Modify `bootcmd` in U-boot to load the new DTB
-   
+
+### Adding out-of-tree modules
+
+Remember to run `depmod`
+
 ## U-Boot
 
 ### Build Configuration
