@@ -18,7 +18,11 @@ Restart your device and wait until systemd hangs. On the host PC, ssh in using `
 
 `systemctl restart getty@ttySTM0`
 
-This should restart the terminal and give you a Buildroot login prompt.
+This should restart the terminal and give you a Buildroot login prompt. 
+
+If hostpc's ssh gives a waring about a possible attact, do not fear. It is the previous connection with the device thats the problem. Simply run the command 
+
+`ssh-keygen -f "/home/morne/.ssh/known_hosts" -R "192.168.0.100"`
 
 
 
