@@ -2,13 +2,13 @@ Linux Driver Development
 
 Process explanation for UART Driver configuration
 
-** UART Registers **
+**UART Registers**
 UART_MDR1  -  Mode Definition Register 1
 UART_LCR   -  Line Control Register
 UART_DLL   -  Divisor Length Low
 UART_DLM   -  Divisor Length High
 
-** Within UART_LCR register **
+**Within UART_LCR register**
 UART_LCR_DLAB  - BIT[7] of UART_LCR
 UART_LCR_WLEN8 - BIT[0-1] of UART_LCR
 
