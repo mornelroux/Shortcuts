@@ -24,7 +24,7 @@ BIT[0-2] (MODESELECT) of UART_MDR1 register is used set the operation mode . Wri
 
 -  Step 2) `reg_write(serial, 0x00, UART_LCR);`
 
-The LCR regsiters is used to se tthe 'register access mode' whic hdifferenciates between Configuration mode A, condifuration mode B and operation mode. Writing `0x00` resets the LCR.
+The LCR regsiters is used to se tthe 'register access mode' whic hdifferenciates between Configuration mode A, condifuration mode B and operation mode. Writing `0x00` resets the LCR. Although `UART_)LCR` is defined in `serial_reg.h` as the value `3`, this is multiplied by 4 in the `writel` function to ultimately come to the `0xC` offset described in the reference sheet.
 
 -  Step 3) `reg_write(serial, UART_LCR_DLAB, UART_LCD);`
 
