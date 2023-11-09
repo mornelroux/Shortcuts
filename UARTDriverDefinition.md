@@ -20,11 +20,11 @@ UART_LCR_WLEN8 - BIT[0-1] of UART_LCR
 
 -  Step 1) `reg_write(serial, 0x07, UART_OMAP_MDR1);`
 
-BIT[0-2] (MODESELECT) of UART_MDR1 register is used set the operation mode. Writing `0x07` to this registers sets the UART controller to defaults (disabled) state. This Disables the UART to access the UART_DLL and UART_DLH registers.
+BIT[0-2] (MODESELECT) of UART_MDR1 register is used set the operation mode . Writing `0x07` to this registers sets the UART controller to defaults (disabled) state. This Disables the UART.
 
 -  Step 2) `reg_write(serial, 0x00, UART_LCR);`
 
-Resets the LCR data to ensure only the desired bits are set.
+The LCR regsiters is used to se tthe 'register access mode' whic hdifferenciates between Configuration mode A, condifuration mode B and operation mode. Writing `0x00` resets the LCR.
 
 -  Step 3) `reg_write(serial, UART_LCR_DLAB, UART_LCD);`
 
