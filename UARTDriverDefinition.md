@@ -28,7 +28,7 @@ The LCR regsiters is used to se tthe 'register access mode' whic hdifferenciates
 
 -  Step 3) `reg_write(serial, UART_LCR_DLAB, UART_LCD);`
 
-The Divisor Latch Access bit allows the DLL and DLH to be accessed as dedicated addresses.
+The Divisor Latch Access bit set the Register access mode to  Configuration mode A, which allows the DLL and DLH to be accessed as dedicated addresses.
 
 -  Step 4) `reg_write(serial, baud_divisor & 0xff, UART_DLL);`
 
